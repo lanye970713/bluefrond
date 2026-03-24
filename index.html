@@ -267,15 +267,15 @@
 
         .grid-box {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 32px;
-            max-width: 1100px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .card {
             background: var(--white);
-            padding: 36px;
+            padding: 32px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: 1px solid rgba(0,0,0,0.05);
@@ -370,6 +370,7 @@
             .banner-content h1 { font-size: 36px; }
             .banner { height: 540px; }
             .section { padding: 70px 5%; }
+            .grid-box { grid-template-columns: repeat(2, 1fr); }
             .contact-box { padding: 36px 24px; }
         }
     </style>
