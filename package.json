@@ -1,0 +1,21 @@
+{
+  "name": "bluefrond",
+  "version": "1.0.0",
+  "description": "Blue Leaf International Technology Co., Limited",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve",
+    "build": "echo 'Building...'",
+    "start": "npx serve"
+  },
+  "keywords": [
+    "bluefrond",
+    "technology",
+    "international"
+  ],
+  "author": "Blue Leaf International Technology Co., Limited",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
