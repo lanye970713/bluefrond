@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="zh-CN">定价方案 | 蓝叶国际技术</title>
+    <title data-lang="zh-TW" style="display:none;">定價方案 | 藍葉國際技術</title>
+    <title data-lang="en" style="display:none;">Pricing | Blue Leaf International</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --secondary: #00D084;
+            --accent: #2563EB;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --white: #ffffff;
+            --logo-blue: #0288d1;
+            --radius: 12px;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 102, 204, 0.1);
+            --transition: all 0.2s ease;
+        }
+
+        body {
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 999;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 36px;
+            filter: brightness(0) saturate(100%) invert(41%) sepia(97%) saturate(754%) hue-rotate(172deg) brightness(95%) contrast(101%);
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .container {
+            margin-top: 120px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.08);
+            padding: 40px 32px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .plan-description {
+            font-size: 14px;
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 24px;
+            min-height: 42px;
+        }
+
+        .plan-price {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .plan-price-note {
+            font-size: 14px;
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px 0;
+            flex-grow: 1;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            color: var(--gray);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .plan-button {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .plan-button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .plan-button.secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .plan-button.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .contact-note {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--light);
+            border-radius: var(--radius);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-note p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .contact-note a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-note a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 5%;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            opacity: 0.85;
+            font-size: 15px;
+            margin: 6px 0;
+            color: var(--white);
+        }
+
+        [data-lang] {
+            display: none !important;
+        }
+
+        [data-lang].active {
+            display: block !important;
+        }
+
+        [data-lang].active-inline {
+            display: inline !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 5%;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .pricing-card.featured {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://img.icons8.com/ios-filled/96/000000/leaf.png" alt="蓝叶">
+            <div class="logo-text" data-lang="zh-CN">蓝叶</div>
+            <div class="logo-text" data-lang="zh-TW" style="display:none;">藍葉</div>
+            <div class="logo-text" data-lang="en" style="display:none;">Blue Leaf</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 data-lang="zh-CN">服务定价</h1>
+        <h1 data-lang="zh-TW" style="display:none;">服務定價</h1>
+        <h1 data-lang="en" style="display:none;">Service Pricing</h1>
+
+        <p class="subtitle" data-lang="zh-CN">选择适合您业务规模和技术需求的解决方案</p>
+        <p class="subtitle" data-lang="zh-TW" style="display:none;">選擇適合您業務規模和技術需求的解決方案</p>
+        <p class="subtitle" data-lang="en" style="display:none;">Choose the solution that fits your business scale and technical needs</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="plan-name" data-lang="zh-CN">初创版</h3>
+                <h3 class="plan-name" data-lang="zh-TW" style="display:none;">初創版</h3>
+                <h3 class="plan-name" data-lang="en" style="display:none;">Startup</h3>
+
+                <p class="plan-description" data-lang="zh-CN">适合初创企业和小型团队</p>
+                <p class="plan-description" data-lang="zh-TW" style="display:none;">適合初創企業和小型團隊</p>
+                <p class="plan-description" data-lang="en" style="display:none;">Perfect for startups and small teams</p>
+
+                <div class="plan-price" data-lang="zh-CN">入门级</div>
+                <div class="plan-price" data-lang="zh-TW" style="display:none;">入門級</div>
+                <div class="plan-price" data-lang="en" style="display:none;">Entry</div>
+
+                <p class="plan-price-note" data-lang="zh-CN">云平台服务 + IT基础架构</p>
+                <p class="plan-price-note" data-lang="zh-TW" style="display:none;">雲平台服務 + IT基礎架構</p>
+                <p class="plan-price-note" data-lang="en" style="display:none;">Cloud Platform + IT Infrastructure</p>
+
+                <ul class="plan-features">
+                    <li data-lang="zh-CN">云平台规划与部署</li>
+                    <li data-lang="zh-TW" style="display:none;">雲平台規劃與部署</li>
+                    <li data-lang="en" style="display:none;">Cloud platform planning and deployment</li>
+
+                    <li data-lang="zh-CN">基础网络架构搭建</li>
+                    <li data-lang="zh-TW" style="display:none;">基礎網路架構搭建</li>
+                    <li data-lang="en" style="display:none;">Basic network architecture setup</li>
+
+                    <li data-lang="zh-CN">服务器部署（最多5台）</li>
+                    <li data-lang="zh-TW" style="display:none;">伺服器部署（最多5台）</li>
+                    <li data-lang="en" style="display:none;">Server deployment (up to 5)</li>
+
+                    <li data-lang="zh-CN">数据备份与恢复</li>
+                    <li data-lang="zh-TW" style="display:none;">資料備份與恢復</li>
+                    <li data-lang="en" style="display:none;">Data backup and recovery</li>
+
+                    <li data-lang="zh-CN">基础安全评估</li>
+                    <li data-lang="zh-TW" style="display:none;">基礎安全評估</li>
+                    <li data-lang="en" style="display:none;">Basic security assessment</li>
+
+                    <li data-lang="zh-CN">工作日技术支持</li>
+                    <li data-lang="zh-TW" style="display:none;">工作日技術支援</li>
+                    <li data-lang="en" style="display:none;">Business days support</li>
+                </ul>
+
+                <a href="mailto:business@bluefrond.com?subject=初创版咨询" class="plan-button secondary" data-lang="zh-CN">联系我们</a>
+                <a href="mailto:business@bluefrond.com?subject=Startup Plan Inquiry" class="plan-button secondary" data-lang="en" style="display:none;">Contact Us</a>
+                <a href="mailto:business@bluefrond.com?subject=初創版咨詢" class="plan-button secondary" data-lang="zh-TW" style="display:none;">聯繫我們</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <h3 class="plan-name" data-lang="zh-CN">成长版</h3>
+                <h3 class="plan-name" data-lang="zh-TW" style="display:none;">成長版</h3>
+                <h3 class="plan-name" data-lang="en" style="display:none;">Growth</h3>
+
+                <p class="plan-description" data-lang="zh-CN">适合成长型企业和中型团队</p>
+                <p class="plan-description" data-lang="zh-TW" style="display:none;">適合成長型企業和中型團隊</p>
+                <p class="plan-description" data-lang="en" style="display:none;">Ideal for growing businesses and mid-sized teams</p>
+
+                <div class="plan-price" data-lang="zh-CN">专业级</div>
+                <div class="plan-price" data-lang="zh-TW" style="display:none;">專業級</div>
+                <div class="plan-price" data-lang="en" style="display:none;">Professional</div>
+
+                <p class="plan-price-note" data-lang="zh-CN">基础服务 + 网络安全 + 数据管理</p>
+                <p class="plan-price-note" data-lang="zh-TW" style="display:none;">基礎服務 + 網路安全 + 資料管理</p>
+                <p class="plan-price-note" data-lang="en" style="display:none;">Basic + Cybersecurity + Data Management</p>
+
+                <ul class="plan-features">
+                    <li data-lang="zh-CN">云平台规划与部署</li>
+                    <li data-lang="zh-TW" style="display:none;">雲平台規劃與部署</li>
+                    <li data-lang="en" style="display:none;">Cloud platform planning and deployment</li>
+
+                    <li data-lang="zh-CN">高级网络架构搭建</li>
+                    <li data-lang="zh-TW" style="display:none;">高級網路架構搭建</li>
+                    <li data-lang="en" style="display:none;">Advanced network architecture setup</li>
+
+                    <li data-lang="zh-CN">服务器部署（最多20台）</li>
+                    <li data-lang="zh-TW" style="display:none;">伺服器部署（最多20台）</li>
+                    <li data-lang="en" style="display:none;">Server deployment (up to 20)</li>
+
+                    <li data-lang="zh-CN">企业级数据管理</li>
+                    <li data-lang="zh-TW" style="display:none;">企業級資料管理</li>
+                    <li data-lang="en" style="display:none;">Enterprise data management</li>
+
+                    <li data-lang="zh-CN">全方位网络安全服务</li>
+                    <li data-lang="zh-TW" style="display:none;">全方位網路安全服務</li>
+                    <li data-lang="en" style="display:none;">Comprehensive cybersecurity services</li>
+
+                    <li data-lang="zh-CN">7×12小时技术支持</li>
+                    <li data-lang="zh-TW" style="display:none;">7×12小時技術支援</li>
+                    <li data-lang="en" style="display:none;">7×12 hours technical support</li>
+
+                    <li data-lang="zh-CN">季度技术评审</li>
+                    <li data-lang="zh-TW" style="display:none;">季度技術評審</li>
+                    <li data-lang="en" style="display:none;">Quarterly technical review</li>
+                </ul>
+
+                <a href="mailto:business@bluefrond.com?subject=成长版咨询" class="plan-button" data-lang="zh-CN">联系我们</a>
+                <a href="mailto:business@bluefrond.com?subject=Growth Plan Inquiry" class="plan-button" data-lang="en" style="display:none;">Contact Us</a>
+                <a href="mailto:business@bluefrond.com?subject=成長版咨詢" class="plan-button" data-lang="zh-TW" style="display:none;">聯繫我們</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3 class="plan-name" data-lang="zh-CN">定制版</h3>
+                <h3 class="plan-name" data-lang="zh-TW" style="display:none;">定制版</h3>
+                <h3 class="plan-name" data-lang="en" style="display:none;">Custom</h3>
+
+                <p class="plan-description" data-lang="zh-CN">适合大型企业和跨国公司</p>
+                <p class="plan-description" data-lang="zh-TW" style="display:none;">適合大型企業和跨國公司</p>
+                <p class="plan-description" data-lang="en" style="display:none;">Designed for large enterprises and multinational corporations</p>
+
+                <div class="plan-price" data-lang="zh-CN">企业级</div>
+                <div class="plan-price" data-lang="zh-TW" style="display:none;">企業級</div>
+                <div class="plan-price" data-lang="en" style="display:none;">Enterprise</div>
+
+                <p class="plan-price-note" data-lang="zh-CN">全服务 + 专属定制 + 全球支持</p>
+                <p class="plan-price-note" data-lang="zh-TW" style="display:none;">全服務 + 專屬定制 + 全球支援</p>
+                <p class="plan-price-note" data-lang="en" style="display:none;">Full Service + Custom + Global Support</p>
+
+                <ul class="plan-features">
+                    <li data-lang="zh-CN">全方位云平台服务</li>
+                    <li data-lang="zh-TW" style="display:none;">全方位雲平台服務</li>
+                    <li data-lang="en" style="display:none;">Full cloud platform services</li>
+
+                    <li data-lang="zh-CN">复杂IT架构设计与实施</li>
+                    <li data-lang="zh-TW" style="display:none;">複雜IT架構設計與實施</li>
+                    <li data-lang="en" style="display:none;">Complex IT architecture design and implementation</li>
+
+                    <li data-lang="zh-CN">无限服务器部署</li>
+                    <li data-lang="zh-TW" style="display:none;">無限伺服器部署</li>
+                    <li data-lang="en" style="display:none;">Unlimited server deployment</li>
+
+                    <li data-lang="zh-CN">企业级数据治理与分析</li>
+                    <li data-lang="zh-TW" style="display:none;">企業級資料治理與分析</li>
+                    <li data-lang="en" style="display:none;">Enterprise data governance and analytics</li>
+
+                    <li data-lang="zh-CN">高级威胁防护与应急响应</li>
+                    <li data-lang="zh-TW" style="display:none;">高級威脅防護與應急響應</li>
+                    <li data-lang="en" style="display:none;">Advanced threat protection and incident response</li>
+
+                    <li data-lang="zh-CN">7×24小时专属技术支持</li>
+                    <li data-lang="zh-TW" style="display:none;">7×24小時專屬技術支援</li>
+                    <li data-lang="en" style="display:none;">7×24 dedicated technical support</li>
+
+                    <li data-lang="zh-CN">专属技术顾问</li>
+                    <li data-lang="zh-TW" style="display:none;">專屬技術顧問</li>
+                    <li data-lang="en" style="display:none;">Dedicated technical consultant</li>
+
+                    <li data-lang="zh-CN">跨境技术合作支持</li>
+                    <li data-lang="zh-TW" style="display:none;">跨境技術合作支援</li>
+                    <li data-lang="en" style="display:none;">Cross-border technical cooperation support</li>
+                </ul>
+
+                <a href="mailto:business@bluefrond.com?subject=定制版咨询" class="plan-button secondary" data-lang="zh-CN">联系我们</a>
+                <a href="mailto:business@bluefrond.com?subject=Custom Plan Inquiry" class="plan-button secondary" data-lang="en" style="display:none;">Contact Us</a>
+                <a href="mailto:business@bluefrond.com?subject=定制版咨詢" class="plan-button secondary" data-lang="zh-TW" style="display:none;">聯繫我們</a>
+            </div>
+        </div>
+
+        <div class="contact-note">
+            <p data-lang="zh-CN">所有定价方案均可根据您的具体需求进行定制调整</p>
+            <p data-lang="zh-TW" style="display:none;">所有定價方案均可根據您的具體需求進行定製調整</p>
+            <p data-lang="en" style="display:none;">All pricing plans can be customized according to your specific needs</p>
+
+            <p data-lang="zh-CN">如需了解详细价格信息，请发送邮件至：</p>
+            <p data-lang="zh-TW" style="display:none;">如需了解詳細價格資訊，請發送郵件至：</p>
+            <p data-lang="en" style="display:none;">For detailed pricing information, please send an email to:</p>
+
+            <p><a href="mailto:business@bluefrond.com">business@bluefrond.com</a></p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html?lang=zh-CN" class="back-link" data-lang="zh-CN">返回首页</a>
+            <a href="index.html?lang=zh-HK" class="back-link" data-lang="zh-TW" style="display:none;">返回首頁</a>
+            <a href="index.html?lang=en" class="back-link" data-lang="en" style="display:none;">Back to Home</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p data-lang="zh-CN">© 2026 蓝叶国际技术有限公司 版权所有 | Blue Leaf International Technology Co., Limited</p>
+        <p data-lang="zh-TW" style="display:none;">© 2026 藍葉國際技術有限公司 版權所有 | Blue Leaf International Technology Co., Limited</p>
+        <p data-lang="en" style="display:none;">© 2026 Blue Leaf International Technology Co., Limited. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+                el.classList.add('active');
+            });
+            localStorage.setItem('language', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let urlLang = urlParams.get('lang');
+            if (urlLang === 'zh-HK') {
+                urlLang = 'zh-TW';
+            }
+            const savedLang = localStorage.getItem('language') || 'zh-CN';
+            const initialLang = urlLang || savedLang;
+            setLanguage(initialLang);
+        });
+    </script>
+</body>
+</html>
